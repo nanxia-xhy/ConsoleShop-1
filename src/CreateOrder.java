@@ -7,13 +7,15 @@ import org.apache.poi.ss.usermodel.FillPatternType;
 import org.apache.poi.ss.usermodel.IndexedColors;
 
 import java.io.FileOutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 public class CreateOrder {
     /**
      * Excel 文件要存放的位置，假定在F盘下
      */
-    public static String outputFile = "F:\\Orders.xls";
+    public static String outputFile = "D:\\Desktop\\蓝桥杯培训\\2021-1-20\\生成购物车\\Orders.xls";
 
     public static void createOrder(Order order) {
         try {
@@ -53,8 +55,23 @@ public class CreateOrder {
                     if (j == 0) {
                         cell.setCellValue(order.getUser().getUsername());
                         //cell.setCellStyle(style);//设置背景色
-                    } else if (j == 1) {
+                    }
+                    else if (j == 1) {
                         cell.setCellValue(order.getProducts()[i].getId());
+                    }
+                    else if(j == 2){
+                        cell.setCellValue(1);
+                    }
+                    else if(j == 3){
+                        cell.setCellValue(order.getProducts()[i].getPrice());
+                    }
+                    else if(j == 4){
+                        cell.setCellValue(order.getTotalPay());
+                    }
+                    else if(j==5){
+                        Date date = new Date();
+                        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                        cell.setCellValue(formatter.format(date));
                     }
                 }
             }
